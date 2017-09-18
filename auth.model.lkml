@@ -10,4 +10,8 @@ explore: audit {
 }
 
 explore: user {
+  join: session {
+    sql_on: ${session.user_id} = ${user.id} ;;
+    relationship: one_to_many
+  }
 }

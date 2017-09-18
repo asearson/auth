@@ -7,6 +7,11 @@ view: user {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: name {
+    type: string
+    sql: CONCAT(${TABLE}.first_name, ' ', ${TABLE}.last_name) ;;
+  }
+
   dimension: deleted {
     type: yesno
     sql: ${TABLE}.deleted ;;
