@@ -57,20 +57,17 @@ view: audit {
     sql: ${TABLE}.target_user_id ;;
   }
 
-dimension_group: created {
-  type: time
-  datatype: date
-  timeframes: [time, day_of_week, date, week, month, year]
-  sql: ${TABLE}.time ;;
- }
+  dimension: purpose_category_id {
+    type: number
+    sql: ${TABLE}.purpose_category_id ;;
+  }
 
- dimension_group: created_yyyymmdd {
-   type: time
-   datatype: yyyymmdd
-   convert_tz: no
-   timeframes: [time, date, week, month, year]
-   sql: ${TABLE}.time ;;
- }
+  dimension_group: created {
+    type: time
+    datatype: date
+    timeframes: [time, day_of_week, date, week, month, year]
+    sql: ${TABLE}.time ;;
+  }
 
   dimension: user_id {
     type: number
@@ -89,9 +86,9 @@ dimension_group: created {
    drill_fields: [looker_host_id, count]
  }
 
- # looker host id is a string
- measure: minutes_on_host {
-   type: count_distinct
-   sql: CONCAT(${looker_host_id},FLOOR(UNIX_TIMESTAMP(${TABLE}.time)/60),'|',${user_id}) ;;
- }
+  # looker host id is a string
+  measure: minutes_on_host {
+    type: count_distinct
+    sql: CONCAT(${looker_host_id},FLOOR(UNIX_TIMESTAMP(${TABLE}.time)/60),'|',${user_id}) ;;
+  }
 }
