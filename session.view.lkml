@@ -12,6 +12,7 @@ view: session {
     timeframes: [
       raw,
       time,
+      day_of_week,
       date,
       week,
       month,
