@@ -60,6 +60,7 @@ view: audit {
   dimension: purpose_category_id {
     type: number
     sql: ${TABLE}.purpose_category_id ;;
+    drill_fields: [id, user.id, user.first_name, user.last_name, purpose, created_time]
   }
 
   dimension_group: created {
@@ -77,7 +78,7 @@ view: audit {
 
   measure: count {
     type: count
-    drill_fields: [id, user.id, user.first_name, user.last_name]
+    drill_fields: [id, user.id, user.first_name, user.last_name, purpose, created_time]
   }
 
   measure: host_count {
