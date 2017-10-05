@@ -92,4 +92,9 @@ view: audit {
     type: count_distinct
     sql: CONCAT(${looker_host_id},FLOOR(UNIX_TIMESTAMP(${TABLE}.time)/60),'|',${user_id}) ;;
   }
+
+  measure: count_distinct_auths {
+    type: count_distinct
+    sql: CONCAT(${user_id},'|',${looker_host_id}) ;;
+  }
 }
