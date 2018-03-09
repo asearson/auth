@@ -76,6 +76,11 @@ view: audit {
     sql: ${TABLE}.user_id ;;
   }
 
+dimension: ticketId {
+  type: string
+  sql: SUBSTRING(${purpose}, LOCATE('1',${purpose}), 6) ;;
+}
+
   measure: count {
     type: count
     drill_fields: [id, user.id, user.first_name, user.last_name, purpose, created_time]
@@ -96,5 +101,6 @@ view: audit {
   measure: count_distinct_auths {
     type: count_distinct
     sql: CONCAT(${user_id},'|',${looker_host_id}) ;;
+    drill_fields: [id, user.id, user.first_name, user.last_name, purpose, created_time]
   }
 }
