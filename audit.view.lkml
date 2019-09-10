@@ -65,7 +65,7 @@ view: audit {
 
   dimension_group: created {
     type: time
-    datatype: date
+    datatype: datetime
     timeframes: [time, day_of_week, date, week, month, year]
     sql: ${TABLE}.time ;;
   }
@@ -84,6 +84,11 @@ dimension: ticketId {
   measure: count {
     type: count
     drill_fields: [id, user.id, user.first_name, user.last_name, purpose, created_time]
+  }
+
+  measure: count_non_first {
+    type:  number
+    sql: ${count} - 1 ;;
   }
 
   measure: host_count {
