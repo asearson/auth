@@ -86,11 +86,6 @@ dimension: ticketId {
     drill_fields: [id, user.id, user.first_name, user.last_name, purpose, created_time]
   }
 
-  measure: count_non_first {
-    type:  number
-    sql: ${count} - 1 ;;
-  }
-
   measure: host_count {
    type: count_distinct
    sql: ${looker_host_id} ;;
