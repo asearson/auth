@@ -3,6 +3,7 @@ connection: "auth"
 include: "*view"
 
 explore: audit {
+  hidden: yes
   join: user {
     sql_on: ${audit.user_id} = ${user.id} ;;
     relationship: many_to_one
@@ -15,6 +16,7 @@ explore: audit {
 }
 
 explore: user {
+  hidden: yes
   join: session {
     sql_on: ${session.user_id} = ${user.id} ;;
     relationship: one_to_many
